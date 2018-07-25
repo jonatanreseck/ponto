@@ -19,12 +19,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import com.exemplo.ponto.api.enums.PerfilEnum;
 
 
 @Entity
+@SequenceGenerator(name = "funcionario_id_seq", sequenceName = "funcionario_id_seq", allocationSize = 1, initialValue = 1)
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
@@ -48,7 +50,8 @@ public class Funcionario implements Serializable {
 	}
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(generator = "funcionario_id_seq")
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	public Long getId() {
 		return id;
 	}

@@ -14,12 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.exemplo.ponto.api.enums.TipoEnum;
 
 @Entity
+@SequenceGenerator(name = "lancamento_id_seq", sequenceName = "lancamento_id_seq", allocationSize = 1, initialValue = 1)
 @Table(name = "lancamento")
 public class Lancamento implements Serializable {
 	
@@ -38,7 +40,7 @@ public class Lancamento implements Serializable {
 	}
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(generator = "lancamento_id_seq")
 	public Long getId() {
 		return id;
 	}
